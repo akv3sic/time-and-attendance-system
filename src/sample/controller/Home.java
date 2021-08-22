@@ -15,6 +15,8 @@ import java.io.IOException;
 public class Home {
     @FXML
     private Button btnAdministration;
+    @FXML
+    private Button btnUsers;
 
 
     public void handleBtnAdministration(ActionEvent actionEvent) throws IOException {
@@ -25,5 +27,9 @@ public class Home {
         // specifies modality
         primaryStage.initModality(Modality.WINDOW_MODAL); // default
         primaryStage.show();
+    }
+
+    public void handleBtnUsers(ActionEvent actionEvent) {
+        System.out.println("Button Korisnici clicked");
     }
 }
