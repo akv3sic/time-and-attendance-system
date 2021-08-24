@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,15 +14,19 @@
          <children>
             <AnchorPane layoutX="223.0" layoutY="35.0" maxWidth="367.0" prefHeight="436.0" prefWidth="367.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="35.0">
                <children>
-                  <Button fx:id="btnAdministration" layoutX="242.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleBtnAdministration" prefHeight="0.0" prefWidth="119.0" text="Administracija" AnchorPane.bottomAnchor="56.0" AnchorPane.rightAnchor="34.0">
+                  <MFXButton fx:id="btnAdministration" buttonType="RAISED" layoutX="216.0" layoutY="348.0" onAction="#handleBtnAdministration" rippleColor="BLACK" style="-fx-background-color: #052949;" text="Administracija" textFill="WHITE" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="35.0">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/icons/icons8-administrative-tools-50.png" />
                            </image>
                         </ImageView>
-                     </graphic></Button>
-                  <Button fx:id="btnUsers" layoutX="214.0" layoutY="393.0" mnemonicParsing="false" onAction="#handleBtnUsers" prefHeight="0.0" prefWidth="119.0" text="Korisnici" AnchorPane.bottomAnchor="18.0" AnchorPane.rightAnchor="34.0">
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton fx:id="btnUsers" buttonType="RAISED" layoutX="214.0" layoutY="305.0" onAction="#handleBtnUsers" prefHeight="25.0" prefWidth="116.0" rippleColor="BLACK" style="-fx-background-color: #052949;" text="Korisnici" textFill="WHITE" AnchorPane.bottomAnchor="102.0" AnchorPane.rightAnchor="37.0">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -30,9 +34,12 @@
                            </image>
                         </ImageView>
                      </graphic>
-                  </Button>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </MFXButton>
                </children></AnchorPane>
-            <AnchorPane layoutX="28.0" layoutY="21.0" prefHeight="467.0" prefWidth="234.0" style="-fx-background-color: linear-gradient(to right top, #052949, #004966, #006a7b, #278c86, #63ac8c);" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
+            <AnchorPane layoutX="28.0" layoutY="21.0" prefHeight="467.0" prefWidth="234.0" style="-fx-background-color: linear-gradient(to right top, #052949, #004966, #006a7b, #278c86, #63ac8c); -fx-background-radius: 0.8em;" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
                <children>
                   <Label layoutX="34.0" layoutY="226.0" text="Time &amp; Attendance System" textFill="WHITE">
                      <font>
