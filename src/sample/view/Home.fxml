@@ -7,12 +7,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import eu.hansolo.medusa.Clock?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Home">
    <children>
-      <AnchorPane layoutX="28.0" layoutY="45.0" minWidth="400.0" prefHeight="508.0" prefWidth="594.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="47.0">
+      <AnchorPane layoutX="28.0" layoutY="71.0" minWidth="400.0" prefHeight="509.0" prefWidth="604.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="71.0">
          <children>
-            <AnchorPane layoutX="223.0" layoutY="35.0" maxWidth="367.0" prefHeight="436.0" prefWidth="367.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="35.0">
+            <AnchorPane layoutX="223.0" layoutY="35.0" maxWidth="367.0" prefHeight="436.0" prefWidth="367.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="35.0">
                <children>
                   <MFXButton fx:id="btnAdministration" buttonType="RAISED" layoutX="216.0" layoutY="348.0" onAction="#handleBtnAdministration" rippleColor="BLACK" style="-fx-background-color: #052949;" text="Administracija" textFill="WHITE" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="35.0">
                      <graphic>
@@ -50,7 +51,11 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Text layoutX="37.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="14:20:54" wrappingWidth="64.13671875" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="14.0" />
       <Text layoutX="550.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dobar dan!" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="14.0" />
+      <AnchorPane layoutX="63" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="63" AnchorPane.topAnchor="107.0">
+         <children>
+            <Clock fx:id="clock" animated="false"/>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
