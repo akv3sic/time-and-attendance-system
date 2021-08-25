@@ -19,7 +19,7 @@ public class Konekcija {
         this.host = "localhost:3307";
         this.korisnik = "root";
         this.lozinka = "";
-        this.baza = "puj";
+        this.baza = "tna";
         this.spoji();
     }
 
