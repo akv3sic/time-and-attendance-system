@@ -28,7 +28,7 @@ public class Home implements Initializable {
         Parent root = FXMLLoader.load(Main.class.getResource("view/AdminLogin.fxml"));
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Time & Attendance System - Administration");
-        primaryStage.setScene(new Scene(root, 400, 375));
+        primaryStage.setScene(new Scene(root, 570, 500));
         // specifies modality
         primaryStage.initModality(Modality.WINDOW_MODAL); // default
         primaryStage.show();
