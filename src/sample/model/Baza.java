@@ -1,26 +1,38 @@
 package sample.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class Baza {
-    private static String racunalo = "localhost";
-    private static String korisnik = "root";
-    private static String lozinka = "";
-    private static String baza = "tna";
 
-    public static Connection KONEKCIJA = null;
+public class Baza extends Konekcija {
 
-    static {
-        String url = "jdbc:mysql://" + Baza.racunalo + ":3306/" + Baza.baza;
+    private Statement upit;
+    private PreparedStatement execUpit;
+
+    public Baza () {
+        super();
+    }
+
+    public ResultSet select (String sql) {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Baza.KONEKCIJA = DriverManager.getConnection(
-                    url, Baza.korisnik, Baza.lozinka
-            );
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e.getMessage());
+            this.upit = this.konekcija.createStatement();
+            return this.upit.executeQuery(sql);
+        } catch (SQLException e) {
+            System.out.println ("Nastala je greška priliko izvršavanja upita " + e.getMessage());
+            return null;
         }
+    }
+
+    public PreparedStatement exec (String sql) {
+        try {
+            this.execUpit = this.konekcija.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            return this.execUpit;
+        } catch (SQLException e) {
+            System.out.println("Nisam uspio izvršiti upit " + e.getMessage());
+        }
+        return null;
     }
 }
