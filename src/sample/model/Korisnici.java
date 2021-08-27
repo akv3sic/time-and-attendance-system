@@ -1,4 +1,7 @@
 package sample.model;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class Korisnici {
@@ -83,5 +86,10 @@ public class Korisnici {
   public void setEmail(String email) {
     this.email = email;
   }
+
+
+
+
+
 
 }
