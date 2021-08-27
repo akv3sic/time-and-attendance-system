@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Created by Daniel on 4.5.2016..
- */
 public class Konekcija {
     private String host;
     private String korisnik;
@@ -16,10 +13,10 @@ public class Konekcija {
     protected Connection konekcija;
 
     public Konekcija () {
-        this.host = "localhost:3307";
+        this.host = "localhost:3306";
         this.korisnik = "root";
         this.lozinka = "";
-        this.baza = "puj";
+        this.baza = "tna";
         this.spoji();
     }
 
