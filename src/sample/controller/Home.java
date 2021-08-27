@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Main;
@@ -28,6 +29,7 @@ public class Home implements Initializable {
         Parent root = FXMLLoader.load(Main.class.getResource("view/AdminLogin.fxml"));
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Time & Attendance System - Administration");
+        primaryStage.getIcons().add(new Image("./assets/logo.png"));
         primaryStage.setScene(new Scene(root, 570, 500));
         // specifies modality
         primaryStage.initModality(Modality.WINDOW_MODAL); // default
