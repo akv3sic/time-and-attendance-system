@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane layoutX="28.0" layoutY="71.0" minWidth="400.0" prefHeight="509.0" prefWidth="604.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="71.0">
+            <children>
+                <AnchorPane layoutX="223.0" layoutY="35.0" maxWidth="367.0" prefHeight="436.0" prefWidth="367.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="35.0" />
+                <AnchorPane layoutX="28.0" layoutY="21.0" prefHeight="473.0" prefWidth="232.0" style="-fx-background-color: linear-gradient(to right top, #052949, #004966, #006a7b, #278c86, #63ac8c); -fx-background-radius: 0.8em;" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
+                    <children>
+                        <VBox layoutX="25.0" layoutY="-69.0" prefHeight="36.0" prefWidth="182.0" AnchorPane.bottomAnchor="506.0" AnchorPane.topAnchor="-69.0">
+                            <children>
+                                <Label alignment="BOTTOM_CENTER" prefHeight="24.0" prefWidth="136.0" text="Upravljačka ploča" textFill="#aaeb36">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                          <Label layoutX="40.0" layoutY="14.0" text="Time &amp; Attendance System" textFill="WHITE">
+                              <font>
+                                  <Font name="System Bold" size="13.0" />
+                              </font>
+                          </Label>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
