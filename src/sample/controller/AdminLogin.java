@@ -6,9 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import sample.Main;
 import javafx.scene.control.Alert.AlertType;
 import sample.model.LoggedInModel;
@@ -32,6 +36,7 @@ public class AdminLogin implements Initializable  {
 
     public void handleBtnLogin(ActionEvent e) throws IOException {
 
+        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         String email = emailTxt.getText();
         String pass = passTxt.getText();
 
@@ -45,11 +50,18 @@ public class AdminLogin implements Initializable  {
         else{
             LoggedInModel user = LoggedInModel.login(email, pass);
             if(user.isLogged && user.isAdmin){
-                System.out.println("Pozdrav"+ user.userName + "!  Uspješno ste se prijavili u admin panel");
+                Parent root = FXMLLoader.load(Main.class.getResource("view/AdminDash.fxml"));
+                stage.setScene(new Scene(root, 570, 500));
+                stage.sizeToScene();
+                stage.show();
+
+
+
+
 
             }
 
-            else if (user.isLogged && (user.isAdmin==false) ){
+            else if (user.isLogged && (!user.isAdmin) ){
                 System.out.println("Nemate pristup administraciji!!");
             }
 
