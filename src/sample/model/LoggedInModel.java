@@ -26,14 +26,14 @@ public class LoggedInModel {
             ps.setString(2,pass);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            int m = rs.getInt("userID");
-            String name = rs.getString("name");
-            String rola=rs.getString("rola");
-            System.out.println(name);
-            System.out.println(rola);
-            System.out.println(m);
+            //int m = rs.getInt("userID");
+            //String name = rs.getString("name");
+            //String rola=rs.getString("rola");
+            //System.out.println(name);
+            //System.out.println(rola);
+            //System.out.println(m);
 
-            if (m!=0){
+            if (rs.getInt("userID")!=0){
 
                 user.isLogged=true;
                 user.userName=rs.getString("name");
