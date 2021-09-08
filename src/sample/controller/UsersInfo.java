@@ -12,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import sample.model.UsersInfoModel;
 
-import javax.jws.soap.SOAPBinding;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
