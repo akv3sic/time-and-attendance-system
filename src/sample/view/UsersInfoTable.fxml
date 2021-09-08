@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.UsersInfo">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.UsersInfo">
    <children>
-      <TableView fx:id="tableUsers" layoutX="161.0" layoutY="122.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="tableUsers" layoutX="161.0" layoutY="54.0" prefHeight="346.0" prefWidth="600.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
         <columns>
           <TableColumn fx:id="name" prefWidth="150.0" text="Ime" />
-          <TableColumn fx:id="lastName" prefWidth="150.0" text="Prezime" />
-            <TableColumn fx:id="jobTitle" prefWidth="150.0" text="Radno Mjesto" />
+          <TableColumn fx:id="lastName" prefWidth="151.0" text="Prezime" />
+            <TableColumn fx:id="jobTitle" prefWidth="149.0" text="Radno Mjesto" />
         </columns>
       </TableView>
+      <Label layoutX="22.0" layoutY="14.0" prefHeight="21.0" prefWidth="143.0" text="Prikaz svih korisnika" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <HBox layoutX="404.0" layoutY="12.0" prefHeight="25.0" prefWidth="97.0">
+         <children>
+            <MFXButton buttonType="RAISED" style="-fx-background-color: #052949;" text="Dodaj novog" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </MFXButton>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

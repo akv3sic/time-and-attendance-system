@@ -3,6 +3,7 @@ package sample.controller;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -47,5 +48,9 @@ public class AdminPanel implements Initializable {
     }
 
 
+    public void handleBtnRadnaMjesta(ActionEvent actionEvent) {
+    }
 
+    public void handleBtnEvidencija(ActionEvent actionEvent) {
+    }
 }
