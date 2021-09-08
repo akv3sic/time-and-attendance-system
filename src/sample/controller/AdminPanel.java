@@ -49,6 +49,9 @@ public class AdminPanel implements Initializable {
 
 
     public void handleBtnRadnaMjesta(ActionEvent actionEvent) {
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPane("WorkplacesOverview");
+        mainPane.setCenter(view);
     }
 
     public void handleBtnEvidencija(ActionEvent actionEvent) {
