@@ -13,13 +13,20 @@ public class Radnomjesto {
   private long radnoMjestoId;
   private String imeRadnogMjesta;
   private double satnica;
+  private String isDeleted;
+
+  public Radnomjesto(long radnoMjestoId, String imeRadnogMjesta, double satnica, String isDeleted) {
+    this.radnoMjestoId = radnoMjestoId;
+    this.imeRadnogMjesta = imeRadnogMjesta;
+    this.satnica = satnica;
+    this.isDeleted = isDeleted;
+  }
 
   public Radnomjesto(long radnoMjestoId, String imeRadnogMjesta, double satnica) {
     this.radnoMjestoId = radnoMjestoId;
     this.imeRadnogMjesta = imeRadnogMjesta;
     this.satnica = satnica;
   }
-
 
   public long getRadnoMjestoId() {
     return radnoMjestoId;
@@ -47,10 +54,18 @@ public class Radnomjesto {
     this.satnica = satnica;
   }
 
+  public String getIsDeleted() {
+    return isDeleted;
+  }
+
+  public void setIsDeleted(String isDeleted) {
+    this.isDeleted = isDeleted;
+  }
+
   public static ObservableList<Radnomjesto> getWorkplaces(){
     ObservableList<Radnomjesto> workplaces = FXCollections.observableArrayList();
     Baza db = new Baza();
-    PreparedStatement ps = db.exec("SELECT rm.RadnoMjestoID, rm.ImeRadnogMjesta, rm.Satnica FROM radnomjesto rm ");
+    PreparedStatement ps = db.exec("SELECT rm.RadnoMjestoID, rm.ImeRadnogMjesta, rm.Satnica FROM radnomjesto rm WHERE IsDeleted=0");
     try{
       ResultSet rs= ps.executeQuery();
       while (rs.next()) {
@@ -66,6 +81,19 @@ public class Radnomjesto {
 
     }
     return workplaces;
+  }
+
+  // soft delete workplace
+  public void deleteWorkplace(long id){
+    try {
+      String sql = "UPDATE radnomjesto SET IsDeleted = 1 WHERE RadnoMjestoID = " + String.valueOf(id);
+      Baza DB = new Baza();
+      PreparedStatement upit = DB.exec (sql);
+
+      upit.executeUpdate();
+    }catch (SQLException ex){
+      System.out.print("Nastala je SQL greška: " + ex);
+    }
   }
 
 }
