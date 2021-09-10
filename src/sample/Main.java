@@ -1,5 +1,6 @@
 package sample;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,32 +8,42 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import sample.helpers.Rfid;
+
+import java.sql.SQLException;
+
 
 public class Main extends Application {
 
-    private String rfid;
+    private String buffer;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        rfid = "";
+        buffer = "";
 
         Parent root = FXMLLoader.load(getClass().getResource("view/Home.fxml"));
 
         primaryStage.setTitle("Time & Attendance System");
         primaryStage.getIcons().add(new Image("./assets/logo.png"));
         primaryStage.setScene(new Scene(root, 600, 575));
+
         primaryStage.addEventHandler(KeyEvent.KEY_PRESSED,  (event) -> {
             System.out.println("Key pressed: " + event.toString());
-            rfid = rfid + event.getText();
-            System.out.println(rfid);
+            buffer = buffer + event.getText();
+            System.out.println(buffer);
             switch(event.getCode().getCode()) {
                 case 27 : { // 27 = ESC key
                     primaryStage.close();
                     break;
                 }
-                case 10 : { // 10 = Return
+                case 10 : { // 10 = Enter
                     System.out.println("Enter clicked");
-                    rfid = "";
+                    try {
+                        handleRfidEvent();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+                    clearBuffer();
                 }
                 default:  {
                     System.out.println("Unrecognized key");
@@ -42,6 +53,15 @@ public class Main extends Application {
 
         primaryStage.requestFocus();
         primaryStage.show();
+    }
+
+    private void clearBuffer() {
+        buffer = "";
+    }
+
+    private void handleRfidEvent() throws SQLException {
+        Rfid rfid = new Rfid(buffer);
+        rfid.isCardRegistered();
     }
 
 
