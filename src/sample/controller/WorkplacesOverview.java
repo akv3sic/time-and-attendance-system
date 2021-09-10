@@ -90,7 +90,7 @@ public class WorkplacesOverview implements Initializable{
         Pane view = object.getPane("DeletedWorkplacesOverview");
 
         workplaces.getChildren().clear();
-        workplaces.getChildren().add(view);
+        workplaces.getChildren().addAll(view.getChildren());
     }
 
     public void handleAddNewBtn(ActionEvent actionEvent) {
@@ -98,6 +98,6 @@ public class WorkplacesOverview implements Initializable{
         Pane view = object.getPane("AddNewWorkplace");
 
         workplaces.getChildren().clear();
-        workplaces.getChildren().add(view);
+        workplaces.getChildren().addAll(view.getChildren());
     }
 }
