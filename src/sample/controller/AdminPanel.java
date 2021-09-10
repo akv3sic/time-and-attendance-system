@@ -55,5 +55,8 @@ public class AdminPanel implements Initializable {
     }
 
     public void handleBtnEvidencija(ActionEvent actionEvent) {
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPane("AttendanceRecords");
+        mainPane.setCenter(view);
     }
 }
