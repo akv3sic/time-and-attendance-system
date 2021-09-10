@@ -164,4 +164,32 @@ public class Evidencijarada {
     return recordsList;
   }
 
+  public static ObservableList<Evidencijarada> getAllAttendanceRecords(Date pickedDate) throws SQLException {
+    ObservableList<Evidencijarada> recordsList = FXCollections.observableArrayList();
+    Baza db = new Baza();
+    PreparedStatement ps = db.exec("SELECT k.Ime, k.Prezime, r.ImeRadnogMjesta, ev.VrijemePocetka, ev.VrijemeKraja, ev.Datum, ev.`InOut`\n" +
+            "FROM evidencijarada as ev \n" +
+            "INNER JOIN korisnici as k on ev.KorisnikID = k.KorisnikID \n" +
+            "INNER JOIN radnomjesto r on k.RadnoMjestoID = r.RadnoMjestoID \n" +
+            "WHERE ev.Datum = ?");
+    ps.setDate(1, pickedDate);
+    try{
+      ResultSet rs= ps.executeQuery();
+      while(rs.next()){
+        recordsList.add(new Evidencijarada(
+                rs.getTime("VrijemePocetka"),
+                rs.getTime("VrijemeKraja"),
+                rs.getDate("Datum"),
+                rs.getLong("InOut") == 1 ? "In" : "Out",
+                rs.getString("Ime"),
+                rs.getString("Prezime"),
+                rs.getString("ImeRadnogMjesta")));
+      }
+    } catch (SQLException ex) {
+      System.out.println("SQL greška: "+ ex);
+
+    }
+    return recordsList;
+  }
+
 }
