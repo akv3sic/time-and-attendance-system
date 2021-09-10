@@ -9,8 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import sample.model.UsersInfoModel;
 
 import java.net.URL;
@@ -23,6 +26,7 @@ public class AdminPanel implements Initializable {
 
 
     public MFXButton btnKorisnici;
+    public ImageView userIconBtn;
     @FXML
     private BorderPane mainPane;
 
