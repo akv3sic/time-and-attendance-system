@@ -83,6 +83,27 @@ public class Radnomjesto {
     return workplaces;
   }
 
+  public static ObservableList<Radnomjesto> getDeletedWorkplaces(){
+    ObservableList<Radnomjesto> workplaces = FXCollections.observableArrayList();
+    Baza db = new Baza();
+    PreparedStatement ps = db.exec("SELECT rm.RadnoMjestoID, rm.ImeRadnogMjesta, rm.Satnica FROM radnomjesto rm WHERE IsDeleted=1");
+    try{
+      ResultSet rs= ps.executeQuery();
+      while (rs.next()) {
+        workplaces.add(new Radnomjesto(
+                rs.getLong("RadnoMjestoID"),
+                rs.getString("ImeRadnogMjesta"),
+                rs.getDouble("Satnica")
+        ));
+      }
+
+    } catch (SQLException ex) {
+      System.out.println("Nastala je SQL greška: " + ex);
+
+    }
+    return workplaces;
+  }
+
   // soft delete workplace
   public void deleteWorkplace(long id){
     try {
@@ -96,4 +117,16 @@ public class Radnomjesto {
     }
   }
 
+  // restore deleted workplace
+  public void restoreWorkplace(long id){
+    try {
+      String sql = "UPDATE radnomjesto SET IsDeleted = 0 WHERE RadnoMjestoID = " + String.valueOf(id);
+      Baza DB = new Baza();
+      PreparedStatement upit = DB.exec (sql);
+
+      upit.executeUpdate();
+    }catch (SQLException ex){
+      System.out.print("Nastala je SQL greška: " + ex);
+    }
+  }
 }
