@@ -45,5 +45,9 @@ public class Home implements Initializable {
         clock.setSkinType(Clock.ClockSkinType.SLIM);
         clock.setPrefSize(174, 174);
         clock.setRunning(true);
+
+        // remove focus from buttons
+        btnAdministration.setFocusTraversable(false);
+        btnUsers.setFocusTraversable(false);
     }
 }
