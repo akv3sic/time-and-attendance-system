@@ -30,12 +30,12 @@ public class Main extends Application {
             //System.out.println("Key pressed: " + event.toString());
             buffer = buffer + event.getText();
             //System.out.println(buffer);
-            switch(event.getCode().getCode()) {
-                case 27 : { // 27 = ESC key -> close stage
+            switch(event.getCode()) {
+                case ESCAPE: { // 27 = ESC key -> close stage
                     primaryStage.close();
                     break;
                 }
-                case 10 : { // 10 = Enter -> activate RFID processing chan
+                case ENTER: { // 10 = Enter -> activate RFID processing chan
                     //System.out.println("Enter clicked");
                     try {
                         handleRfidEvent();
