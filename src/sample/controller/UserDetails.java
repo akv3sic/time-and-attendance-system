@@ -65,7 +65,7 @@ public class UserDetails implements Initializable {
     }
 
     public UserDetails (int id){
-        System.out.println(id);
+
         initUser(id);
         idProp.set(id);
 

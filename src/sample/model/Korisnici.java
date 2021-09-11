@@ -31,6 +31,17 @@ public class Korisnici {
 
   }
 
+  public Korisnici(String phone, String email, String password) {
+    this.ime="";
+    this.prezime="";
+    this.kontaktBroj=phone;
+    this.role="";
+    this.radnoMjesto="";
+    this.password=password;
+    this.email=email;
+    this.rfid="";
+  }
+
   public static Korisnici getUser(int id){
 
     try{
@@ -114,11 +125,22 @@ public class Korisnici {
     }
   }
 
-
-
-
-
-
+  public static void userSelfUpdate(int id, Korisnici user) {
+    try {
+      Baza db = new Baza();
+      PreparedStatement ps = db.exec("UPDATE korisnici as k \n" +
+              "SET k.KontaktBroj = ?,k.Password=?, k.Email=?\n" +
+              "WHERE k.KorisnikID = ?;");
+      ps.setString(1, user.kontaktBroj);
+      ps.setString(2,user.password);
+      ps.setString(3,user.email);
+      ps.setInt(4,id);
+      ps.executeUpdate();
+    }
+    catch (Exception e){
+      System.out.print("Nastala je SQL greška: " + e);
+    }
+  }
 
 
   public String getIme() {
