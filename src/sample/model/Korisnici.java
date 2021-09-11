@@ -1,4 +1,5 @@
 package sample.model;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -79,7 +80,7 @@ public class Korisnici {
 
   }
 
-  public static void addUser(Korisnici user){
+  public static boolean addUser(Korisnici user){
     try {
       Baza db = new Baza();
       PreparedStatement ps = db.exec("INSERT INTO korisnici (Ime , Prezime, KontaktBroj,  RoleID, RadnoMjestoID, CardID, korisnici.Password, Email ) " +
@@ -94,16 +95,16 @@ public class Korisnici {
       ps.setString(7,user.password);
       ps.setString(8,user.email);
       ps.executeUpdate();
+      return true;
     }
     catch (Exception e){
       System.out.print("Nastala je SQL greška: " + e);
     }
-
-
+    return false;
   }
 
 
-  public static void updateUser(Korisnici user, int id){
+  public static boolean updateUser(Korisnici user, int id){
     try {
       Baza db = new Baza();
       PreparedStatement ps = db.exec("UPDATE korisnici as k \n" +
@@ -119,13 +120,15 @@ public class Korisnici {
       ps.setString(8,user.email);
       ps.setInt(9, id);
       ps.executeUpdate();
+      return true;
     }
     catch (Exception e){
       System.out.print("Nastala je SQL greška: " + e);
     }
+    return false;
   }
 
-  public static void userSelfUpdate(int id, Korisnici user) {
+  public static boolean userSelfUpdate(int id, Korisnici user) {
     try {
       Baza db = new Baza();
       PreparedStatement ps = db.exec("UPDATE korisnici as k \n" +
@@ -136,10 +139,12 @@ public class Korisnici {
       ps.setString(3,user.email);
       ps.setInt(4,id);
       ps.executeUpdate();
+      return true;
     }
     catch (Exception e){
       System.out.print("Nastala je SQL greška: " + e);
     }
+    return false;
   }
 
 

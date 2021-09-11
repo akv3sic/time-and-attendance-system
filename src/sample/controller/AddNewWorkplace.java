@@ -2,17 +2,23 @@ package sample.controller;
 
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import sample.helpers.PushNotifications;
 import sample.model.Radnomjesto;
 
-public class AddNewWorkplace {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AddNewWorkplace implements Initializable {
     public AnchorPane workplaces;
     public MFXButton backBtn;
     public TextField workplaceNameField;
     public TextField hourRateField;
     public MFXButton addNewBtn;
+    PushNotifications notifications;
 
     public void handleBackBtn(ActionEvent actionEvent) {
         FxmlLoader object = new FxmlLoader();
@@ -24,7 +30,9 @@ public class AddNewWorkplace {
 
     public void handleAddNewBtn(ActionEvent actionEvent) {
         Radnomjesto rm = new Radnomjesto(workplaceNameField.getText(), Double.parseDouble(hourRateField.getText()));
-        rm.createWorkplace();
+        if(rm.createWorkplace()) {
+            notifications.showNotification("STANDARD", "Obavijest", "Uspjeh",  "Radno mjesto " + workplaceNameField.getText() + " dodano");
+        }
         clearFields();
         loadWorkplacesOverview();
     }
@@ -40,5 +48,10 @@ public class AddNewWorkplace {
     private void clearFields() {
         this.workplaceNameField.clear();
         this.hourRateField.clear();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        notifications = new PushNotifications();
     }
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import sample.helpers.PushNotifications;
 import sample.model.Korisnici;
 import sample.model.Radnomjesto;
 import sample.model.Role;
@@ -46,6 +47,8 @@ public class UserDetails implements Initializable {
     ChoiceBox<String> workplaceCB;
     @FXML
     ChoiceBox<String> roleCB;
+    PushNotifications notifications;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         getWorkplaces();
@@ -60,8 +63,8 @@ public class UserDetails implements Initializable {
         roleCB.setValue(roleString.get());
         btnUpdate.setOnAction((ActionEvent event) -> {
             handleBtnUpdate();
-
         });
+        notifications = new PushNotifications();
     }
 
     public UserDetails (int id){
@@ -114,7 +117,9 @@ public class UserDetails implements Initializable {
         user.setPassword(passTxt.getText());
         user.setKontaktBroj(phoneTxt.getText());
         user.setRfid(rfidTxt.getText());
-        Korisnici.updateUser(user, idProp.getValue());
+        if(Korisnici.updateUser(user, idProp.getValue())) {
+            notifications.showNotification("STANDARD", "Obavijest", "Uspjeh",  "Podatci korisnika " + nameTxt.getText() + " spremljeni.");
+        }
 
         FxmlLoader object = new FxmlLoader();
         Pane view = object.getPane("UsersInfoTable");

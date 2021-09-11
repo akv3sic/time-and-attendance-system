@@ -19,6 +19,11 @@ public class PushNotifications {
         NotificationPos pos = NotificationPos.TOP_CENTER;
         NotificationsManager.send(pos, notification);
     }
+    public void showNotification(String type, String header, String title, String content) {
+        MFXNotification notification = buildNotification(type, header, title, content);
+        NotificationPos pos = NotificationPos.TOP_RIGHT;
+        NotificationsManager.send(pos, notification);
+    }
     public void showNotification(String type, String firstName, String lastName, Time time) {
         MFXNotification notification = buildNotification(type, firstName, lastName, time);
         NotificationPos pos = NotificationPos.TOP_CENTER;
@@ -27,6 +32,22 @@ public class PushNotifications {
 
     private MFXNotification buildNotification(String type) {
         Region template = getTemplate(type);
+        MFXNotification notification = new MFXNotification(template, true, true);
+        notification.setHideAfterDuration(Duration.seconds(2.5));
+
+        if (template instanceof SimpleMFXNotificationPane) {
+            SimpleMFXNotificationPane pane = (SimpleMFXNotificationPane) template;
+            pane.setCloseHandler(closeEvent -> notification.hideNotification());
+        } else {
+            MFXDialog dialog = (MFXDialog) template;
+            dialog.setCloseHandler(closeEvent -> notification.hideNotification());
+        }
+
+        return notification;
+    }
+
+    private MFXNotification buildNotification(String type, String header, String title, String content) {
+        Region template = getTemplate(type, header, title, content);
         MFXNotification notification = new MFXNotification(template, true, true);
         notification.setHideAfterDuration(Duration.seconds(2.5));
 
@@ -55,6 +76,21 @@ public class PushNotifications {
         }
 
         return notification;
+    }
+
+    private Region getTemplate(String type, String header, String title, String content) {
+        switch (type) {
+            case "STANDARD": {
+                return new SimpleMFXNotificationPane(
+                        header,
+                        title,
+                        content
+                );
+            }
+            default: {
+                return null;
+            }
+        }
     }
 
     private Region getTemplate(String type, String firstName, String lastName, Time time) {

@@ -9,6 +9,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import sample.helpers.PushNotifications;
 import sample.model.Korisnici;
 import sample.model.Radnomjesto;
 import sample.model.Role;
@@ -30,6 +31,7 @@ public class UserAdd implements Initializable {
     ChoiceBox<String> workplaceCB;
     @FXML
     ChoiceBox<String> roleCB;
+    PushNotifications notifications;
 
 
 
@@ -38,6 +40,7 @@ public class UserAdd implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     getWorkplaces();
     getRoles();
+    notifications = new PushNotifications();
     }
 
     public void getRoles(){
@@ -69,7 +72,10 @@ public class UserAdd implements Initializable {
 
 
         );
-        Korisnici.addUser(user);
+        if(Korisnici.addUser(user)) {
+            notifications.showNotification("STANDARD", "Obavijest", "Uspjeh",  "Korisnik " + nameTxt.getText() +
+                                                " " + lastNameTxt.getText() + " dodan.");
+        }
         FxmlLoader object = new FxmlLoader();
         Pane view = object.getPane("UsersInfoTable");
 

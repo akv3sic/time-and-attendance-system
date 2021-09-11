@@ -158,7 +158,7 @@ public class Radnomjesto {
   }
 
   // create new workplace
-  public void createWorkplace(){
+  public boolean createWorkplace(){
     try {
       String sql = "INSERT INTO radnomjesto VALUES (null, ?, ?, 0)";
       Baza DB = new Baza();
@@ -166,10 +166,12 @@ public class Radnomjesto {
       upit.setString(1, this.imeRadnogMjesta);
       upit.setDouble(2, this.satnica);
       upit.executeUpdate();
+      return true;
 
     } catch (SQLException ex) {
       System.out.print("SQL greška" + ex);
     }
+      return false;
   }
 
 }

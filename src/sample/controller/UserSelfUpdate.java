@@ -1,5 +1,6 @@
 package sample.controller;
 
+import com.sun.javafx.sg.prism.NodeEffectInput;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import sample.Main;
+import sample.helpers.PushNotifications;
 import sample.model.Korisnici;
 
 import java.awt.*;
@@ -36,8 +38,10 @@ public class UserSelfUpdate implements Initializable {
     TextField phoneTxt , passTxt , emailTxt ;
     @FXML
     MFXButton btnUpdate;
+    PushNotifications notifications;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        notifications = new PushNotifications();
         nameTxt.setText(nameString.get());
         lastNameTxt.setText(lastNameString.get());
         phoneTxt.setText(phoneString.get());
@@ -52,7 +56,9 @@ public class UserSelfUpdate implements Initializable {
 
     private void handleBtnUpdate() {
         Korisnici user = new Korisnici(phoneTxt.getText(), emailTxt.getText(), passTxt.getText());
-        Korisnici.userSelfUpdate(idProp.getValue(), user);
+        if(Korisnici.userSelfUpdate(idProp.getValue(), user)) {
+           notifications.showNotification("STANDARD", "Obavijest", "Uspjeh",  nameString.get() + ", Vaši podatci su spremljeni.");
+        }
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/UserEdit.fxml"));
         UserSelfUpdate controller=new UserSelfUpdate(idProp.getValue());
         loader.setController(controller);
