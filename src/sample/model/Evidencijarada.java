@@ -1,16 +1,59 @@
 package sample.model;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.*;
+
 public class Evidencijarada {
 
   private long evidencijaId;
-  private java.sql.Timestamp vrijemePocetka;
-  private java.sql.Timestamp vrijemeKraja;
+  private java.sql.Time vrijemePocetka;
+  private java.sql.Time vrijemeKraja;
   private java.sql.Date datum;
   private double ukupnoVrijemeRada;
   private double prekovremeni;
   private long korisnikId;
   private long statusId;
+  private String inOut;
+  private String ime;
+  private String prezime;
+  private String radnoMjesto;
+
+  public String getIme() {
+    return ime;
+  }
+
+  public void setIme(String ime) {
+    this.ime = ime;
+  }
+
+  public String getPrezime() {
+    return prezime;
+  }
+
+  public void setPrezime(String prezime) {
+    this.prezime = prezime;
+  }
+
+  public String getRadnoMjesto() {
+    return radnoMjesto;
+  }
+
+  public void setRadnoMjesto(String radnoMjesto) {
+    this.radnoMjesto = radnoMjesto;
+  }
+
+  public Evidencijarada(Time vrijemePocetka, Time vrijemeKraja, Date datum, String inOut, String ime, String prezime, String radnoMjesto) {
+    this.vrijemePocetka = vrijemePocetka;
+    this.vrijemeKraja = vrijemeKraja;
+    this.datum = datum;
+    this.inOut = inOut;
+    this.ime = ime;
+    this.prezime = prezime;
+    this.radnoMjesto = radnoMjesto;
+  }
 
 
   public long getEvidencijaId() {
@@ -22,20 +65,20 @@ public class Evidencijarada {
   }
 
 
-  public java.sql.Timestamp getVrijemePocetka() {
+  public java.sql.Time getVrijemePocetka() {
     return vrijemePocetka;
   }
 
-  public void setVrijemePocetka(java.sql.Timestamp vrijemePocetka) {
+  public void setVrijemePocetka(java.sql.Time vrijemePocetka) {
     this.vrijemePocetka = vrijemePocetka;
   }
 
 
-  public java.sql.Timestamp getVrijemeKraja() {
+  public java.sql.Time getVrijemeKraja() {
     return vrijemeKraja;
   }
 
-  public void setVrijemeKraja(java.sql.Timestamp vrijemeKraja) {
+  public void setVrijemeKraja(java.sql.Time vrijemeKraja) {
     this.vrijemeKraja = vrijemeKraja;
   }
 
@@ -82,6 +125,71 @@ public class Evidencijarada {
 
   public void setStatusId(long statusId) {
     this.statusId = statusId;
+  }
+
+
+  public String getInOut() {
+    return inOut;
+  }
+
+  public void setInOut(String inOut) {
+    this.inOut = inOut;
+  }
+
+  // get all records
+
+  public static ObservableList<Evidencijarada> getAllAttendanceRecords(){
+    ObservableList<Evidencijarada> recordsList = FXCollections.observableArrayList();
+    Baza db = new Baza();
+    PreparedStatement ps = db.exec("SELECT k.Ime, k.Prezime, r.ImeRadnogMjesta, ev.VrijemePocetka, ev.VrijemeKraja, ev.Datum, ev.`InOut`\n" +
+            "FROM evidencijarada as ev \n" +
+            "INNER JOIN korisnici as k on ev.KorisnikID = k.KorisnikID \n" +
+            "INNER JOIN radnomjesto r on k.RadnoMjestoID = r.RadnoMjestoID");
+    try{
+      ResultSet rs= ps.executeQuery();
+      while(rs.next()){
+        recordsList.add(new Evidencijarada(
+                rs.getTime("VrijemePocetka"),
+                rs.getTime("VrijemeKraja"),
+                rs.getDate("Datum"),
+                rs.getLong("InOut") == 1 ? "In" : "Out",
+                rs.getString("Ime"),
+                rs.getString("Prezime"),
+                rs.getString("ImeRadnogMjesta")));
+      }
+    } catch (SQLException ex) {
+      System.out.println("SQL greška: "+ ex);
+
+    }
+    return recordsList;
+  }
+
+  public static ObservableList<Evidencijarada> getAllAttendanceRecords(Date pickedDate) throws SQLException {
+    ObservableList<Evidencijarada> recordsList = FXCollections.observableArrayList();
+    Baza db = new Baza();
+    PreparedStatement ps = db.exec("SELECT k.Ime, k.Prezime, r.ImeRadnogMjesta, ev.VrijemePocetka, ev.VrijemeKraja, ev.Datum, ev.`InOut`\n" +
+            "FROM evidencijarada as ev \n" +
+            "INNER JOIN korisnici as k on ev.KorisnikID = k.KorisnikID \n" +
+            "INNER JOIN radnomjesto r on k.RadnoMjestoID = r.RadnoMjestoID \n" +
+            "WHERE ev.Datum = ?");
+    ps.setDate(1, pickedDate);
+    try{
+      ResultSet rs= ps.executeQuery();
+      while(rs.next()){
+        recordsList.add(new Evidencijarada(
+                rs.getTime("VrijemePocetka"),
+                rs.getTime("VrijemeKraja"),
+                rs.getDate("Datum"),
+                rs.getLong("InOut") == 1 ? "In" : "Out",
+                rs.getString("Ime"),
+                rs.getString("Prezime"),
+                rs.getString("ImeRadnogMjesta")));
+      }
+    } catch (SQLException ex) {
+      System.out.println("SQL greška: "+ ex);
+
+    }
+    return recordsList;
   }
 
 }

@@ -28,6 +28,12 @@ public class Radnomjesto {
     this.satnica = satnica;
   }
 
+  public Radnomjesto(String imeRadnogMjesta, double satnica) {
+    this.imeRadnogMjesta = imeRadnogMjesta;
+    this.satnica = satnica;
+  }
+
+
   public long getRadnoMjestoId() {
     return radnoMjestoId;
   }
@@ -148,6 +154,21 @@ public class Radnomjesto {
       upit.executeUpdate();
     }catch (SQLException ex){
       System.out.print("Nastala je SQL greška: " + ex);
+    }
+  }
+
+  // create new workplace
+  public void createWorkplace(){
+    try {
+      String sql = "INSERT INTO radnomjesto VALUES (null, ?, ?, 0)";
+      Baza DB = new Baza();
+      PreparedStatement upit = DB.exec (sql);
+      upit.setString(1, this.imeRadnogMjesta);
+      upit.setDouble(2, this.satnica);
+      upit.executeUpdate();
+
+    } catch (SQLException ex) {
+      System.out.print("SQL greška" + ex);
     }
   }
 
