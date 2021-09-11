@@ -26,7 +26,7 @@
       </Label>
       <HBox layoutX="255.0" layoutY="12.0" prefHeight="25.0" prefWidth="246.0">
          <children>
-            <MFXButton buttonType="RAISED" style="-fx-background-color: #052949;" text="Dodaj novo" textFill="WHITE">
+            <MFXButton fx:id="addNewBtn" buttonType="RAISED" onAction="#handleAddNewBtn" style="-fx-background-color: #052949;" text="Dodaj novo" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

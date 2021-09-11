@@ -28,6 +28,7 @@ public class WorkplacesOverview implements Initializable{
     public TableView tableWorkplaces;
     public MFXButton trashBtn;
     public AnchorPane workplaces;
+    public MFXButton addNewBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -92,4 +93,11 @@ public class WorkplacesOverview implements Initializable{
         workplaces.getChildren().add(view);
     }
 
+    public void handleAddNewBtn(ActionEvent actionEvent) {
+        FxmlLoader object = new FxmlLoader();
+        Pane view = object.getPane("AddNewWorkplace");
+
+        workplaces.getChildren().clear();
+        workplaces.getChildren().add(view);
+    }
 }
