@@ -89,6 +89,27 @@ public class Radnomjesto {
     return workplaces;
   }
 
+  public static ObservableList<String> getWorkplaceNames(){
+    ObservableList<String> workplaces = FXCollections.observableArrayList();
+
+    Baza db = new Baza();
+    PreparedStatement ps = db.exec("SELECT rm.ImeRadnogMjesta FROM radnomjesto rm WHERE IsDeleted=0");
+    try{
+      ResultSet rs= ps.executeQuery();
+      while (rs.next()) {
+        workplaces.add(
+                rs.getString("ImeRadnogMjesta")
+        );
+      }
+
+    } catch (SQLException ex) {
+      System.out.println("Nastala je SQL greška: " + ex);
+
+    }
+    return workplaces;
+
+  }
+
   public static ObservableList<Radnomjesto> getDeletedWorkplaces(){
     ObservableList<Radnomjesto> workplaces = FXCollections.observableArrayList();
     Baza db = new Baza();
@@ -136,6 +157,7 @@ public class Radnomjesto {
     }
   }
 
+  // create new workplace
   public void createWorkplace(){
     try {
       String sql = "INSERT INTO radnomjesto VALUES (null, ?, ?, 0)";
@@ -149,4 +171,5 @@ public class Radnomjesto {
       System.out.print("SQL greška" + ex);
     }
   }
+
 }

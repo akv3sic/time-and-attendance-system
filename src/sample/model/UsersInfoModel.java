@@ -51,7 +51,7 @@ public class UsersInfoModel {
                 "\tradnomjesto as r\n" +
                 "\n" +
                 "\n" +
-                "WHERE k.RadnoMjestoID = r.RadnoMjestoID;");
+                "WHERE k.RadnoMjestoID = r.RadnoMjestoID AND k.IsDeleted = 0;");
         try{
             ResultSet rs= ps.executeQuery();
             while(rs.next()){
@@ -71,7 +71,22 @@ public class UsersInfoModel {
         return usersList;
         }
 
+
+    public static void deleteUser(int id){
+        try {
+            Baza db = new Baza();
+            PreparedStatement ps = db.exec("UPDATE korisnici SET IsDeleted = 1 WHERE KorisnikID =" + id + ";");
+            ps.executeUpdate();
+        }
+        catch (Exception e){
+            System.out.print("Nastala je SQL greška: " + e);
+        }
+
+
     }
+
+
+}
 
 
 
