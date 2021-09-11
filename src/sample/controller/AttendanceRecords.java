@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import sample.model.Evidencijarada;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -67,11 +68,14 @@ public class AttendanceRecords implements Initializable {
 
     public void handleRefreshBtn(ActionEvent actionEvent) throws SQLException {
         try {
-            getRecords(java.sql.Date.valueOf(datePicker.getDate()));
+             LocalDate date = datePicker.getDate();
+            if(date == null){
+                date = LocalDate.now();
+            }
+            getRecords(java.sql.Date.valueOf(date));
         }
         catch (SQLException ex) {
             System.out.println("Greška: " + ex);
         }
-
     }
 }
