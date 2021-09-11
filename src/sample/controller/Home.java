@@ -36,8 +36,18 @@ public class Home implements Initializable {
         primaryStage.show();
     }
 
-    public void handleBtnUsers(ActionEvent actionEvent) {
-        System.out.println("Button Korisnici clicked");
+    public void handleBtnUsers(ActionEvent actionEvent) throws IOException {
+
+        Parent root = FXMLLoader.load(Main.class.getResource("view/UserLogin.fxml"));
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Time & Attendance System - Korisnici");
+        primaryStage.getIcons().add(new Image("./assets/logo.png"));
+        primaryStage.setScene(new Scene(root, 570, 500));
+        primaryStage.initModality(Modality.WINDOW_MODAL); // default
+        primaryStage.show();
+
+
+
     }
 
     @Override
