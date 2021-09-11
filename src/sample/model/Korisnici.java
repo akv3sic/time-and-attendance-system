@@ -36,7 +36,7 @@ public class Korisnici {
     try{
       Baza db = new Baza();
       PreparedStatement ps = db.exec("SELECT k.Ime as name, k.Prezime as lastName, k.KontaktBroj as phone," +
-              " k.Password as pass, k.Email as mail, k.RFID as rfid, rm.ImeRadnogMjesta as workplace, " +
+              " k.Password as pass, k.Email as mail, k.CardID as rfid, rm.ImeRadnogMjesta as workplace, " +
               "r.Rola as role FROM korisnici as k inner join radnomjesto as rm " +
               "INNER join role as r WHERE k.KorisnikID = "+ id +" and k.RoleID=r.RoleID " +
               "and k.RadnoMjestoID=rm.RadnoMjestoID; ");
@@ -71,7 +71,7 @@ public class Korisnici {
   public static void addUser(Korisnici user){
     try {
       Baza db = new Baza();
-      PreparedStatement ps = db.exec("INSERT INTO korisnici (Ime , Prezime, KontaktBroj,  RoleID, RadnoMjestoID, RFID, korisnici.Password, Email ) " +
+      PreparedStatement ps = db.exec("INSERT INTO korisnici (Ime , Prezime, KontaktBroj,  RoleID, RadnoMjestoID, CardID, korisnici.Password, Email ) " +
               "VALUES (?, ?, ?, (SELECT role.RoleID from role WHERE role.Rola= ?), " +
               "(SELECT radnomjesto.RadnoMjestoID from radnomjesto WHERE radnomjesto.ImeRadnogMjesta= ?), ?, ?,?);");
       ps.setString(1, user.ime);
@@ -96,7 +96,7 @@ public class Korisnici {
     try {
       Baza db = new Baza();
       PreparedStatement ps = db.exec("UPDATE korisnici as k \n" +
-              "Set k.Ime =?, k.Prezime=?, k.KontaktBroj = ?, k.RoleID=(SELECT role.RoleID from role WHERE role.Rola= ?), k.RadnoMjestoID=(SELECT radnomjesto.RadnoMjestoID from radnomjesto WHERE radnomjesto.ImeRadnogMjesta= ?), k.RFID=?, k.Password=?, k.Email=?\n" +
+              "Set k.Ime =?, k.Prezime=?, k.KontaktBroj = ?, k.RoleID=(SELECT role.RoleID from role WHERE role.Rola= ?), k.RadnoMjestoID=(SELECT radnomjesto.RadnoMjestoID from radnomjesto WHERE radnomjesto.ImeRadnogMjesta= ?), k.CardID=?, k.Password=?, k.Email=?\n" +
               "WHERE k.KorisnikID = ?;");
       ps.setString(1, user.ime);
       ps.setString(2,user.prezime);
