@@ -65,7 +65,7 @@ public class UsersInfoModel {
 
             }
         } catch (SQLException ex) {
-            System.out.println("Nastala je greška prilikom iteriranja.");
+            System.out.println("SQL greška: " + ex);
 
             }
         return usersList;
