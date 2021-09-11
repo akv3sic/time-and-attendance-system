@@ -7,19 +7,20 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import sample.helpers.PushNotifications;
 import sample.helpers.Rfid;
-
 import java.sql.SQLException;
 
 
 public class Main extends Application {
 
     private String buffer;
+    PushNotifications notifications;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         buffer = "";
-
+        notifications = new PushNotifications();
         Parent root = FXMLLoader.load(getClass().getResource("view/Home.fxml"));
 
         primaryStage.setTitle("Time & Attendance System");
@@ -58,15 +59,28 @@ public class Main extends Application {
         buffer = "";
     }
 
+    /*
+    IN  ---- 1
+    OUT ---- 0
+    */
     private void handleRfidEvent() throws SQLException {
         if(isBufferValid()) {
             Rfid rfid = new Rfid(buffer);
             if(rfid.isCardRegistered()) {
-                rfid.saveRecord();
+                if(rfid.saveRecord() == 1) {
+                    // IN notification
+                    notifications.showNotification("IN", rfid.getFirstName(), rfid.getLastName(), rfid.getTime());
+                }
+                else {
+                    // OUT notification
+                    notifications.showNotification("OUT", rfid.getFirstName(), rfid.getLastName(), rfid.getTime());
+                }
+            }
+            else {
+                // INVALID CARD notification
+                notifications.showNotification("INVALIDCARD");
             }
         }
-
-
     }
 
     private boolean isBufferValid() {

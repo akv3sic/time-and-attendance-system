@@ -12,6 +12,24 @@ public class Rfid {
     private Date date;
     private Time time;
     private Short inOut;
+    private String firstName;
+    private String lastName;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public void setRecordId(long recordId) {
         this.recordId = recordId;
@@ -36,6 +54,10 @@ public class Rfid {
         this.date = Date.valueOf(LocalDate.now());
     }
 
+    public Time getTime() {
+        return time;
+    }
+
     public boolean isCardRegistered() throws SQLException {
         boolean validity = true;
         ps = db.exec("SELECT k.Ime, k.Prezime, k.KorisnikID\n" +
@@ -50,6 +72,8 @@ public class Rfid {
             else {
                 rs.next();
                 setUserID(rs.getLong("KorisnikID"));
+                setFirstName(rs.getString("Ime"));
+                setLastName(rs.getString("Prezime"));
                 System.out.println("ID korisnika: " + this.userID);
             }
 
@@ -62,16 +86,22 @@ public class Rfid {
        return validity;
     }
 
-    public void saveRecord() throws SQLException {
+    /*
+        IN  ---- 1
+        OUT ---- 0
+    */
+    public Integer saveRecord() throws SQLException {
         System.out.println("Save record entered");
         String lastRecord = checkLastRecord();
         if(lastRecord == "In") {
             System.out.println("Upiši kao OUT");
             writeRecord("Out");
+            return 0;
         }
         else {
             System.out.println("Upiši kao IN");
             writeRecord("In");
+            return 1;
         }
     }
 
