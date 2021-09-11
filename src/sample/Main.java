@@ -61,7 +61,9 @@ public class Main extends Application {
 
     private void handleRfidEvent() throws SQLException {
         Rfid rfid = new Rfid(buffer);
-        rfid.isCardRegistered();
+        if(rfid.isCardRegistered()) {
+            rfid.saveRecord();
+        }
     }
 
 
