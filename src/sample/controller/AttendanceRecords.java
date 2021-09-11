@@ -29,21 +29,30 @@ public class AttendanceRecords implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        getRecords();
+        try {
+            getRecords();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 
-    private void getRecords() {
-        ObservableList<Evidencijarada> records = Evidencijarada.getAllAttendanceRecords();
+    private void getRecords() throws SQLException {
+        try {
+            ObservableList<Evidencijarada> records = Evidencijarada.getAllAttendanceRecords(java.sql.Date.valueOf(LocalDate.now()));
 
-        firstName.setCellValueFactory(new PropertyValueFactory<Evidencijarada,String>("Ime"));
-        lastName.setCellValueFactory(new PropertyValueFactory<Evidencijarada,String>("Prezime"));
-        jobTitle.setCellValueFactory(new PropertyValueFactory<Evidencijarada,String>("radnoMjesto"));
-        timeIn.setCellValueFactory(new PropertyValueFactory<Evidencijarada,String>("vrijemePocetka"));
-        timeOut.setCellValueFactory(new PropertyValueFactory<Evidencijarada,String>("vrijemeKraja"));
-        date.setCellValueFactory(new PropertyValueFactory<Evidencijarada, Date>("datum"));
-        inOut.setCellValueFactory(new PropertyValueFactory<Evidencijarada,String>("inOut"));
+            firstName.setCellValueFactory(new PropertyValueFactory<Evidencijarada, String>("Ime"));
+            lastName.setCellValueFactory(new PropertyValueFactory<Evidencijarada, String>("Prezime"));
+            jobTitle.setCellValueFactory(new PropertyValueFactory<Evidencijarada, String>("radnoMjesto"));
+            timeIn.setCellValueFactory(new PropertyValueFactory<Evidencijarada, String>("vrijemePocetka"));
+            timeOut.setCellValueFactory(new PropertyValueFactory<Evidencijarada, String>("vrijemeKraja"));
+            date.setCellValueFactory(new PropertyValueFactory<Evidencijarada, Date>("datum"));
+            inOut.setCellValueFactory(new PropertyValueFactory<Evidencijarada, String>("inOut"));
 
-        attendanceRecordsTable.setItems(records);
+            attendanceRecordsTable.setItems(records);
+        }
+        catch (SQLException ex) {
+            System.out.println("Greška: " + ex);
+        }
     }
 
     private void getRecords(Date pickedDate) throws SQLException {
