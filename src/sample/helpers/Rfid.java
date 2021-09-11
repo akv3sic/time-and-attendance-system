@@ -41,7 +41,7 @@ public class Rfid {
         ps = db.exec("SELECT k.Ime, k.Prezime, k.KorisnikID\n" +
                 "FROM korisnici as k\n" +
                 "WHERE k.CardID = ?");
-        ps.setString(1, this.cardID.substring(0,10));
+        ps.setString(1, this.cardID);
         try{
             ResultSet rs= ps.executeQuery();
             if(!rs.isBeforeFirst()) {
