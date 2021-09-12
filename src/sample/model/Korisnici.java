@@ -83,6 +83,10 @@ public class Korisnici {
   public static boolean addUser(Korisnici user){
     try {
       Baza db = new Baza();
+      // check for card ID
+      if(user.rfid == "") {
+          user.setRfid(null);
+      }
       PreparedStatement ps = db.exec("INSERT INTO korisnici (Ime , Prezime, KontaktBroj,  RoleID, RadnoMjestoID, CardID, korisnici.Password, Email ) " +
               "VALUES (?, ?, ?, (SELECT role.RoleID from role WHERE role.Rola= ?), " +
               "(SELECT radnomjesto.RadnoMjestoID from radnomjesto WHERE radnomjesto.ImeRadnogMjesta= ?), ?, ?,?);");
