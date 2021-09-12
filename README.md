@@ -3,4 +3,9 @@
 
 RFID based.
 
-This app is currently a work in progress.
+### Project setup
+1. Clone this repository.
+2. Create a lib directory in the root of the project
+3. Download the used libraries (see branch libraries) and put them under the lib directory.
+4. Set up database (see database folder).
+5. Run.
