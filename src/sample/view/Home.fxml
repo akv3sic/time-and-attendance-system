@@ -51,7 +51,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Text layoutX="550.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dobar dan!" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="14.0" />
+      
       <AnchorPane layoutX="63" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="63" AnchorPane.topAnchor="107.0">
          <children>
             <Clock fx:id="clock" animated="false"/>
