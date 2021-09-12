@@ -134,7 +134,7 @@ public class Radnomjesto {
   // soft delete workplace
   public void deleteWorkplace(long id){
     try {
-      String sql = "UPDATE radnomjesto SET IsDeleted = 1 WHERE RadnoMjestoID = " + String.valueOf(id);
+      String sql = "UPDATE radnomjesto SET IsDeleted = 1 WHERE RadnoMjestoID = " + id;
       Baza DB = new Baza();
       PreparedStatement upit = DB.exec (sql);
 
@@ -147,7 +147,7 @@ public class Radnomjesto {
   // restore deleted workplace
   public void restoreWorkplace(long id){
     try {
-      String sql = "UPDATE radnomjesto SET IsDeleted = 0 WHERE RadnoMjestoID = " + String.valueOf(id);
+      String sql = "UPDATE radnomjesto SET IsDeleted = 0 WHERE RadnoMjestoID = " + id;
       Baza DB = new Baza();
       PreparedStatement upit = DB.exec (sql);
 

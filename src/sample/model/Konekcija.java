@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Konekcija {
-    private String host;
-    private String korisnik;
-    private String lozinka;
-    private String baza;
+    private final String host;
+    private final String korisnik;
+    private final String lozinka;
+    private final String baza;
 
     protected Connection konekcija;
 
