@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="workplaces" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.WorkplacesOverview">
+   <children>
+      <TableView fx:id="tableWorkplaces" layoutX="161.0" layoutY="54.0" prefHeight="346.0" prefWidth="600.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+        <columns>
+          <TableColumn fx:id="workplace" prefWidth="150.0" text="Radno mjesto" />
+          <TableColumn fx:id="hourRate" prefWidth="151.0" text="Satnica" />
+        </columns>
+      </TableView>
+      <Label layoutX="22.0" layoutY="14.0" prefHeight="21.0" prefWidth="143.0" text="Prikaz radnih mjesta" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <HBox layoutX="255.0" layoutY="12.0" prefHeight="25.0" prefWidth="246.0">
+         <children>
+            <MFXButton fx:id="addNewBtn" buttonType="RAISED" onAction="#handleAddNewBtn" style="-fx-background-color: #052949;" text="Dodaj novo" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </MFXButton>
+            <MFXButton fx:id="trashBtn" buttonType="RAISED" onAction="#handleTrashBtn" style="-fx-background-color: #052949;" text="Smeće" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="14.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/icons/icons8-trash-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MFXButton>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

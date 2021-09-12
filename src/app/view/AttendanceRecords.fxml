@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="508.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AttendanceRecords">
+   <children>
+      <TableView fx:id="attendanceRecordsTable" layoutX="161.0" layoutY="54.0" prefHeight="346.0" prefWidth="600.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+        <columns>
+          <TableColumn fx:id="firstName" prefWidth="150.0" text="Ime" />
+          <TableColumn fx:id="lastName" prefWidth="151.0" text="Prezime" />
+            <TableColumn fx:id="jobTitle" prefWidth="149.0" text="Radno Mjesto" />
+            <TableColumn fx:id="timeIn" prefWidth="149.0" text="Ulazak" />
+            <TableColumn fx:id="timeOut" prefWidth="149.0" text="Izlazak" />
+            <TableColumn fx:id="date" prefWidth="149.0" text="Datum" />
+            <TableColumn fx:id="inOut" prefWidth="149.0" text="In/Out" />
+        </columns>
+      </TableView>
+      <Label layoutX="22.0" layoutY="14.0" prefHeight="21.0" prefWidth="143.0" text="Prikaz svih zapisa" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <HBox layoutX="306.0" layoutY="10.0" prefHeight="30.0" prefWidth="175.0">
+         <children>
+            <MFXDatePicker fx:id="datePicker" lineColor="#052949b2" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="78.0" pickerColor="#052949" prefHeight="30.0" prefWidth="82.0">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </MFXDatePicker>
+            <MFXButton fx:id="refreshBtn" buttonType="RAISED" onAction="#handleRefreshBtn" style="-fx-background-color: #052949;" text="Osvježi" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" top="4.0" />
+               </HBox.margin>
+            </MFXButton>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
