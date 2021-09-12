@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane fx:id="mainAP" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="121.0" layoutY="23.0" prefHeight="50.0" text="   OSOBNI PODATCI" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -18,7 +19,7 @@
          </opaqueInsets>
       </Label>
       <TextField fx:id="phoneTxt" layoutX="14.0" layoutY="173.0" prefHeight="36.0" prefWidth="222.0" promptText="Broj mobitela" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="160.0" />
-      <TextField fx:id="passTxt" layoutX="25.0" layoutY="222.0" prefHeight="36.0" prefWidth="222.0" promptText="Lozinka" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="210.0" />
+      <PasswordField fx:id="passTxt" layoutX="25.0" layoutY="222.0" prefHeight="36.0" prefWidth="222.0" promptText="Lozinka" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="210.0" />
       <TextField fx:id="emailTxt" layoutX="25.0" layoutY="258.0" prefHeight="36.0" prefWidth="222.0" promptText="Email" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="260.0" />
       <MFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="411.0" layoutY="260.0" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #052949;;" text="Spremi promjene" textFill="WHITE" AnchorPane.leftAnchor="411.0" AnchorPane.topAnchor="260.0">
          <font>

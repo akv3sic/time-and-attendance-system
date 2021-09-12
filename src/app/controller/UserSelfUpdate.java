@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import app.Main;
@@ -32,7 +33,9 @@ public class UserSelfUpdate implements Initializable {
     @FXML
     Label nameTxt, lastNameTxt;
     @FXML
-    TextField phoneTxt , passTxt , emailTxt ;
+    TextField phoneTxt , emailTxt;
+    @FXML
+    PasswordField passTxt;
     @FXML
     MFXButton btnUpdate;
     PushNotifications notifications;
