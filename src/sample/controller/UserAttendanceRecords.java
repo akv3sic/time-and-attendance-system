@@ -37,7 +37,7 @@ public class UserAttendanceRecords implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            getRecords();
+            getRecords(java.sql.Date.valueOf(LocalDate.now()));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

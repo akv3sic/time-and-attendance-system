@@ -19,7 +19,7 @@
             <TableColumn fx:id="date" prefWidth="149.0" text="Datum" />
         </columns>
       </TableView>
-      <Label layoutX="22.0" layoutY="14.0" prefHeight="21.0" prefWidth="143.0" text="Prikaz svih zapisa" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="14.0">
+      <Label layoutX="22.0" layoutY="14.0" prefHeight="21.0" prefWidth="143.0" text="Prikaz evidencija" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font size="15.0" />
          </font>

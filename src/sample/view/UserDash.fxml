@@ -37,7 +37,7 @@
             </VBox>
          </left>
       </BorderPane>
-      <Label alignment="CENTER" layoutY="-3.0" prefHeight="75.0" style="-fx-text-fill: #aaeb36;" text="Upravljačka ploča" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
+      <Label alignment="CENTER" layoutY="-3.0" prefHeight="75.0" style="-fx-text-fill: #aaeb36;" text="Korisnički račun" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
          <font>
             <Font name="Candara Bold" size="18.0" />
          </font>
