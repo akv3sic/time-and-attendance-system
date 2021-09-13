@@ -3,8 +3,14 @@
 
 RFID based.
 ### Screenshots
+- Home
 <p align="center">
 <img src="https://media4.giphy.com/media/DjBDY41M5HohxRxHZn/giphy.gif?cid=790b7611840a24be6afd3b41f659f1407eef1b248287139a&rid=giphy.gif&ct=g" alt="home view">
+</p>
+
+- Dashboard
+<p align="center">
+<img src="https://user-images.githubusercontent.com/57301167/133132660-3221009f-4956-40e8-bcd0-1fb3a23ede4e.png" alt="dashboard">
 </p>
 
 ### Project setup
