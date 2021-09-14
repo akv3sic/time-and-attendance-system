@@ -32,11 +32,11 @@ public class Main extends Application {
             buffer = buffer + event.getText();
             //System.out.println(buffer);
             switch(event.getCode()) {
-                case ESCAPE: { // 27 = ESC key -> close stage
-                    primaryStage.close();
+                case F5: { // F5 key -> go to full screen
+                    primaryStage.setFullScreen(!primaryStage.isFullScreen());
                     break;
                 }
-                case ENTER: { // 10 = Enter -> activate RFID processing chan
+                case ENTER: { // Enter -> activate RFID processing chain
                     //System.out.println("Enter clicked");
                     try {
                         handleRfidEvent();
