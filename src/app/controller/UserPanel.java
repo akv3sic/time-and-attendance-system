@@ -3,10 +3,13 @@ package app.controller;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import app.Main;
@@ -20,10 +23,15 @@ public class UserPanel implements Initializable {
     BorderPane mainPane;
     @FXML
     MFXButton btnUserData, btnUserEvidencija;
+    @FXML
+    Label userNameLabel;
 
     private IntegerProperty idProp = new SimpleIntegerProperty();
+    private String userFirstName = new String();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // set user label text
+        userNameLabel.setText(userFirstName);
         btnUserData.setOnAction((ActionEvent event) -> {
             try {
                 handleBtnUserData();
@@ -45,11 +53,11 @@ public class UserPanel implements Initializable {
             e.printStackTrace();
         }
     }
-    public  UserPanel(int id){
-        idProp.setValue(id);
 
+    public UserPanel(int idProp, String userFirstName) {
+        this.idProp.setValue(idProp);
+        this.userFirstName = userFirstName;
     }
-
 
     public void handleBtnUserData() throws IOException {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/UserEdit.fxml"));

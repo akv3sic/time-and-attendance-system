@@ -57,7 +57,7 @@ public class UserLogin implements Initializable {
                 notifications.showNotification("STANDARD", "Uspješna prijava", "Pozdrav " + user.userName + "!", "Lijepo je vidjeti Vas opet.");
                 // load user account
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/UserDash.fxml"));
-                UserPanel controller = new UserPanel(user.userID);
+                UserPanel controller = new UserPanel(user.userID, user.userName);
                 loader.setController(controller);
                 try {
                     AnchorPane ap = loader.load();

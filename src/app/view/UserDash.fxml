@@ -10,14 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane fx:id="mainPane" layoutX="61.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <left>
             <VBox fx:id="leftVbox" prefWidth="209.0" style="-fx-background-color: linear-gradient(to right top, #052949, #004966, #006a7b, #278c86, #63ac8c); -fx-background-radius: 0.8em;" BorderPane.alignment="CENTER">
                <children>
-                  <MFXButton id="btnPanel" fx:id="btnUserData" alignment="CENTER" layoutX="50.0" layoutY="50.0"
-                             prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 0.8em;" styleClass="buttonPanel" text="Moji podatci" textAlignment="CENTER" textFill="WHITE">
+                  <MFXButton id="btnPanel" fx:id="btnUserData" alignment="CENTER" layoutX="50.0" layoutY="50.0" prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 0.8em;" styleClass="buttonPanel" text="Moji podatci" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="10.0" left="50.0" right="50.0" top="50.0" />
                      </VBox.margin>
@@ -25,7 +24,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </MFXButton>
-                  <MFXButton id="btnPanel" fx:id="btnUserEvidencija" alignment="CENTER" layoutX="50.0" layoutY="50.0"  prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 0.8em;" styleClass="buttonPanel" text="Evidencija" textAlignment="CENTER" textFill="WHITE">
+                  <MFXButton id="btnPanel" fx:id="btnUserEvidencija" alignment="CENTER" layoutX="50.0" layoutY="50.0" prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 0.8em;" styleClass="buttonPanel" text="Evidencija" textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
                      </VBox.margin>
@@ -47,5 +46,6 @@
             <Image url="@../../assets/icons/icons8-male-user-48.png" />
          </image>
       </ImageView>
+      <Label fx:id="userNameLabel" layoutX="711.0" layoutY="26.0" text="Label" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="26.0" />
    </children>
 </AnchorPane>
