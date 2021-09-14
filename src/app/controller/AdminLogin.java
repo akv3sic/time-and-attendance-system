@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.helpers.Email;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -21,6 +23,7 @@ import java.util.ResourceBundle;
 public class AdminLogin implements Initializable  {
 
     public MFXButton btnLogin;
+    public Label errorLabel;
 
     @FXML
     TextField emailTxt;
@@ -37,39 +40,34 @@ public class AdminLogin implements Initializable  {
         String email = emailTxt.getText();
         String pass = passTxt.getText();
 
-        //String email = "vjeko@gmail.com";
-        //String pass = "password123";
-
-        if (email.equals("")||pass.equals("")){
-
-            System.out.println("Morate unijeti sve vrijednosti!!");
+        // e-mail and password validation
+        if (email.equals("") || pass.equals("")){
+            errorLabel.setText("Potrebno je popuniti oba polja.");
         }
-        else{
+
+        else if(isValidEmailAddress(email)){
             LoggedInModel user = LoggedInModel.login(email, pass);
             if(user.isLogged && user.isAdmin){
                 Parent root = FXMLLoader.load(Main.class.getResource("view/AdminDash.fxml"));
                 stage.setScene(new Scene(root, 750, 500));
                 stage.sizeToScene();
                 stage.show();
-
-
-
-
-
             }
-
             else if (user.isLogged && (!user.isAdmin) ){
-                System.out.println("Nemate pristup administraciji!!");
+                errorLabel.setText("Nemate pristup administraciji.");
             }
-
             else {
-                System.out.println("Netočan email ili lozinka!!");
+                errorLabel.setText("Pogrešan e-mail ili lozinka!");
 
             }
-
-
         }
+        else {
+            errorLabel.setText("E-adresa nije valjana.");
+        }
+    }
 
-
+    private boolean isValidEmailAddress(String email) {
+        Email eMailHelper = new Email();
+        return eMailHelper.isValid(email);
     }
 }

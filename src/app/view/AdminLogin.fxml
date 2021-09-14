@@ -26,6 +26,7 @@
                   </MFXButton>
                   <PasswordField fx:id="passTxt" layoutX="64.0" layoutY="189.0" prefHeight="36.0" prefWidth="222.0" promptText="Lozinka" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="81.0" />
                   <TextField fx:id="emailTxt" layoutX="64.0" layoutY="120.0" prefHeight="36.0" prefWidth="222.0" promptText="E-mail" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="81.0" />
+                  <Label fx:id="errorLabel" layoutX="64.0" layoutY="237.0" prefHeight="17.0" prefWidth="222.0" textFill="#e81313" />
                </children></AnchorPane>
             <AnchorPane layoutX="28.0" layoutY="21.0" prefHeight="473.0" prefWidth="232.0" style="-fx-background-color: linear-gradient(to right top, #052949, #004966, #006a7b, #278c86, #63ac8c); -fx-background-radius: 0.8em;" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.0">
                <children>

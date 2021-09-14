@@ -36,7 +36,7 @@ public class UserLogin implements Initializable {
         String email = emailTxt.getText();
         String pass = passTxt.getText();
 
-        if (email.equals("")||pass.equals("")){
+        if (email.equals("") || pass.equals("")){
 
             System.out.println("Morate unijeti sve vrijednosti!!");
         }
