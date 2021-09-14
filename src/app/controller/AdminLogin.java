@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import app.Main;
 import app.model.LoggedInModel;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,18 +46,20 @@ public class AdminLogin implements Initializable  {
 
         else if(isValidEmailAddress(email)){
             LoggedInModel user = LoggedInModel.login(email, pass);
-            if(user.isLogged && user.isAdmin){
+            if(user == null) {
+                errorLabel.setText("Pogrešan e-mail ili lozinka!");
+            }
+            else if(user.isLogged && user.isAdmin){
                 Parent root = FXMLLoader.load(Main.class.getResource("view/AdminDash.fxml"));
                 stage.setScene(new Scene(root, 750, 500));
                 stage.sizeToScene();
                 stage.show();
             }
-            else if (user.isLogged && (!user.isAdmin) ){
+            else if(user.isLogged && !user.isAdmin){
                 errorLabel.setText("Nemate pristup administraciji.");
             }
             else {
-                errorLabel.setText("Pogrešan e-mail ili lozinka!");
-
+                errorLabel.setText("Izgleda da je došlo do greške.");
             }
         }
         else {
