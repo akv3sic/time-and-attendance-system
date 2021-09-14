@@ -49,6 +49,7 @@
                   <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </TextField>
+            <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="209.0" textFill="#f21e1e" />
             <MFXButton fx:id="addNewBtn" buttonType="RAISED" onAction="#handleAddNewBtn" style="-fx-background-color: #052949;" text="Dodaj" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />

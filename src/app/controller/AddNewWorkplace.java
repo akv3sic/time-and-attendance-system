@@ -3,6 +3,7 @@ package app.controller;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -18,6 +19,7 @@ public class AddNewWorkplace implements Initializable {
     public TextField workplaceNameField;
     public TextField hourRateField;
     public MFXButton addNewBtn;
+    public Label errorLabel;
     PushNotifications notifications;
 
     public void handleBackBtn(ActionEvent actionEvent) {
@@ -29,12 +31,19 @@ public class AddNewWorkplace implements Initializable {
     }
 
     public void handleAddNewBtn(ActionEvent actionEvent) {
-        Radnomjesto rm = new Radnomjesto(workplaceNameField.getText(), Double.parseDouble(hourRateField.getText()));
-        if(rm.createWorkplace()) {
-            notifications.showNotification("STANDARD", "Obavijest", "Uspjeh",  "Radno mjesto " + workplaceNameField.getText() + " dodano");
+        String workPlace = workplaceNameField.getText();
+        String  hourRate = hourRateField.getText();
+        if(workPlace == "" || hourRate == "") {
+            errorLabel.setText("Obavezno polje.");
         }
-        clearFields();
-        loadWorkplacesOverview();
+        else {
+            Radnomjesto rm = new Radnomjesto(workplaceNameField.getText(), Double.parseDouble(hourRateField.getText()));
+            if(rm.createWorkplace()) {
+                notifications.showNotification("STANDARD", "Obavijest", "Uspjeh",  "Radno mjesto " + workplaceNameField.getText() + " dodano");
+            }
+            clearFields();
+            loadWorkplacesOverview();
+        }
     }
 
     private void loadWorkplacesOverview() {
