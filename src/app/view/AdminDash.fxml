@@ -54,5 +54,6 @@
             <Image url="@../../assets/icons/icons8-male-user-48.png" />
          </image>
       </ImageView>
+      <Label fx:id="userNameLabel" layoutX="710.0" layoutY="26.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="26.0" />
    </children>
 </AnchorPane>

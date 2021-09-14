@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class LoggedInModel {
     public int userID;
-    public String userName;
+    public static String userName;
     public boolean isLogged;
     public boolean isAdmin;
 
@@ -15,6 +15,13 @@ public class LoggedInModel {
         this.userName=userName;
         this.isLogged=isLogged;
         this.isAdmin=isAdmin;
+    }
+
+    /*
+     static because this data is needed in admin panel
+     */
+    public static String getUserName() {
+        return userName;
     }
 
     public static LoggedInModel login(String email, String pass){
