@@ -51,6 +51,8 @@ public class UserLogin implements Initializable {
             LoggedInModel user = LoggedInModel.login(email, pass);
             if(user == null) {
                 errorLabel.setText("Pogrešan e-mail ili lozinka!");
+                // clear password
+                passTxt.setText("");
             }
             else if(user.isLogged){
                 // fire success notification
