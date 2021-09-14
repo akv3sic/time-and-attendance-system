@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.helpers.Email;
+import app.helpers.PushNotifications;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,11 +28,13 @@ public class UserLogin implements Initializable {
     @FXML
     PasswordField passTxt;
     Email eMailHelper;
+    PushNotifications notifications;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         eMailHelper = new Email();
+        notifications = new PushNotifications();
     }
 
     public void handleBtnLogin(ActionEvent actionEvent) throws IOException {
@@ -50,6 +53,9 @@ public class UserLogin implements Initializable {
                 errorLabel.setText("Pogrešan e-mail ili lozinka!");
             }
             else if(user.isLogged){
+                // fire success notification
+                notifications.showNotification("STANDARD", "Uspješna prijava", "Pozdrav " + user.userName + "!", "Lijepo je vidjeti Vas opet.");
+                // load user account
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/UserDash.fxml"));
                 UserPanel controller = new UserPanel(user.userID);
                 loader.setController(controller);

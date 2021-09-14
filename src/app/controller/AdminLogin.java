@@ -1,6 +1,7 @@
 package app.controller;
 
 import app.helpers.Email;
+import app.helpers.PushNotifications;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ public class AdminLogin implements Initializable  {
 
     public MFXButton btnLogin;
     public Label errorLabel;
+    PushNotifications notifications;
 
     @FXML
     TextField emailTxt;
@@ -30,7 +32,7 @@ public class AdminLogin implements Initializable  {
     PasswordField passTxt;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        notifications = new PushNotifications();
     }
 
     public void handleBtnLogin(ActionEvent e) throws IOException {
@@ -50,6 +52,9 @@ public class AdminLogin implements Initializable  {
                 errorLabel.setText("Pogrešan e-mail ili lozinka!");
             }
             else if(user.isLogged && user.isAdmin){
+                // fire success notification
+                notifications.showNotification("STANDARD", "Uspješna prijava", "Pozdrav " + user.userName + "!", "Lijepo je vidjeti Vas opet.");
+                // open admin dashboard
                 Parent root = FXMLLoader.load(Main.class.getResource("view/AdminDash.fxml"));
                 stage.setScene(new Scene(root, 950, 650));
                 stage.sizeToScene();
