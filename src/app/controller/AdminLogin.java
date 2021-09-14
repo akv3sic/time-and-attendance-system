@@ -51,7 +51,7 @@ public class AdminLogin implements Initializable  {
             }
             else if(user.isLogged && user.isAdmin){
                 Parent root = FXMLLoader.load(Main.class.getResource("view/AdminDash.fxml"));
-                stage.setScene(new Scene(root, 750, 500));
+                stage.setScene(new Scene(root, 950, 650));
                 stage.sizeToScene();
                 stage.show();
             }
