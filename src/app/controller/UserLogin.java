@@ -1,10 +1,12 @@
 package app.controller;
 
+import app.helpers.Email;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -17,17 +19,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class UserLogin implements Initializable {
+    public Label errorLabel;
     @FXML
     AnchorPane mainAP;
     @FXML
     TextField emailTxt;
     @FXML
     PasswordField passTxt;
+    Email eMailHelper;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        eMailHelper = new Email();
     }
 
     public void handleBtnLogin(ActionEvent actionEvent) throws IOException {
@@ -36,13 +40,16 @@ public class UserLogin implements Initializable {
         String email = emailTxt.getText();
         String pass = passTxt.getText();
 
+        // e-mail and password validation
         if (email.equals("") || pass.equals("")){
-
-            System.out.println("Morate unijeti sve vrijednosti!!");
+            errorLabel.setText("Potrebno je popuniti oba polja.");
         }
-        else{
+        else if(eMailHelper.isValid(email)){
             LoggedInModel user = LoggedInModel.login(email, pass);
-            if(user.isLogged){
+            if(user == null) {
+                errorLabel.setText("Pogrešan e-mail ili lozinka!");
+            }
+            else if(user.isLogged){
                 FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/UserDash.fxml"));
                 UserPanel controller = new UserPanel(user.userID);
                 loader.setController(controller);
@@ -50,16 +57,18 @@ public class UserLogin implements Initializable {
                     AnchorPane ap = loader.load();
                     mainAP.getChildren().clear();
                     mainAP.getChildren().add(ap);
+                    // set appropriate stage size
+                    stage.setWidth(800);
+                    stage.setHeight(650);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
             }
             else {
-                System.out.println("Netočan email ili lozinka!!");
-
+                errorLabel.setText("Izgleda da je došlo do pogreške.");
             }
-
-    }
+        }
+        else {
+            errorLabel.setText("E-adresa nije valjana.");
+        }
 }}

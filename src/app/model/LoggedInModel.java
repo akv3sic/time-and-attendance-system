@@ -25,6 +25,7 @@ public class LoggedInModel {
             ps.setString(1, email);
             ps.setString(2,pass);
             ResultSet rs = ps.executeQuery();
+            // check for empty result set
             if(!rs.isBeforeFirst()) {
                 return null;
             }
