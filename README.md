@@ -17,8 +17,9 @@ RFID based.
 1. Clone this repository.
 2. Create a lib directory in the root of the project
 3. Download the used libraries (see branch libraries) and put them under the lib directory.
-4. Set up database (see database folder).
-5. Run.
+4. [Download](https://openjfx.io/) and [set up](https://openjfx.io/openjfx-docs/#install-javafx) JavaFX SDK.
+5. Set up database (see database folder).
+6. Run.
 
 ## About
 #### Authors
